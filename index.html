@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+
+    <!-- Import React dan ReactDOM versi development dari CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Import Babel agar kita bisa menulis JSX langsung di browser (jangan dipakai di production) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Elemen root tempat React akan merender komponen -->
+    <div id="root"></div>
+
+    <!-- Tulis script dengan type="text/babel" agar JSX bisa diproses oleh Babel -->
+    <script type="text/babel">
+      // Ambil elemen DOM dengan id="root"
+      const container = document.getElementById("root");
+
+      // Buat root React dari elemen HTML tersebut
+      const root = ReactDOM.createRoot(container);
+
+      // Komponen Header menerima props (dalam bentuk objek) lalu di-destructuring jadi { name }
+      function Header({ name }) {
+        // Tampilkan teks. Kalau name ada, tampilkan name, kalau tidak ada tampilkan "Azhar"
+        return <h1>Belajar React Bareng {name ? name : "Azhar"}! 🚀</h1>;
+      }
+
+      // Komponen utama: HomePage
+      function HomePage() {
+        // Array nama mahasiswa
+        const students = ["Azhar", "Bagus", "Caca", "Dody", "Erik"];
+
+        // Menggunakan state untuk menyimpan jumlah likes, nilai awal = 0
+        const [likes, setLikes] = React.useState(0);
+
+        // Fungsi yang dijalankan saat tombol diklik (menambah likes)
+        function handleClick() {
+          setLikes(likes + 1); // Tambah 1 like
+        }
+
+        // Return isi dari komponen ini (dalam bentuk JSX)
+        return (
+          <>
+            {/* Kirim props name ke komponen Header */}
+            <Header name="AKU!" />
+
+            {/* Tampilkan daftar mahasiswa dalam <ul> */}
+            <ul>
+              {/* Gunakan .map() untuk mengulang data students */}
+              {students.map((student, index) => {
+                // Setiap elemen list harus punya key unik
+                return <li key={index + 1}>Nama mahasiswa: {student}</li>;
+              })}
+            </ul>
+
+            {/* Tombol yang bisa diklik untuk menambah likes */}
+            <button onClick={handleClick}>Likes ({likes})</button>
+          </>
+        );
+      }
+
+      // Render komponen HomePage ke dalam elemen root
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
