@@ -1,10 +1,10 @@
 export default function Input(props) {
-  const { type, placeholder } = props;
+  const { type, placeholder, name } = props;
   return (
     <>
       <input
-        id={type}
-        name={type}
+        id={name}
+        name={name}
         type={type}
         autoComplete={type}
         placeholder={placeholder}

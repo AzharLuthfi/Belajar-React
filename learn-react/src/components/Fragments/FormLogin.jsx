@@ -11,12 +11,14 @@ export default function FormLogin(props) {
           placeholder="email"
           text="Email"
           type="email"
+          name="email"
         ></InputForm>
         <InputForm
           htmlFor="password"
           placeholder="********"
           text="Password"
           type="password"
+          name="password"
         ></InputForm>
 
         <Button classname="bg-blue-600 w-full mt-3">{textButton}</Button>
